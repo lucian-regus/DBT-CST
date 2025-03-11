@@ -1,0 +1,70 @@
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: raw_listings
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: NAME
+            data_tests:
+              - not_null
+          - name: PRICE
+            data_tests:
+              - not_null
+          - name: ROOM_TYPE
+            data_tests:
+              - accepted_values:
+                  values: ['Entire home/apt', 'Private room']
+          - name: MINIMUM_NIGHTS
+            data_tests:
+              - not_null
+          - name: HOST_ID
+          - name: LISTING_URL
+            data_tests:
+              - not_null
+          - name: CREATED_AT
+            data_tests:
+              - not_null
+          - name: UPDATED_AT
+            data_tests:
+              - not_null
+
+      - name: raw_hosts
+        columns:
+          - name: ID
+            data_tests:
+              - not_null
+          - name: NAME
+            data_tests:
+              - not_null
+          - name: IS_SUPERHOST
+            data_tests:
+              - accepted_values:
+                  values: ['t', 'f']
+          - name: CREATED_AT
+            data_tests:
+              - not_null
+          - name: UPDATED_AT
+            data_tests:
+              - not_null
+            
+      - name: raw_reviews
+        columns:
+          - name: LISTING_ID       
+          - name: COMMENTS
+            data_tests:
+              - not_null
+          - name: SENTIMENT
+            data_tests:
+              - accepted_values:
+                  values: ['positive', 'negative', 'neutral']
+          - name: DATE
+            data_tests:
+              - not_null
+          - name: REVIEWER_NAME
+            data_tests:
+              - not_null
